@@ -1,13 +1,19 @@
-@media screen and (min-width: 1200px) {
-    .bricklayer-column-sizer {
-      /* divide by 3. */
-      width: 33.3%;
-    }
-  }
-  
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .bricklayer-column-sizer {
       /* divide by 2. */
       width: 50%;
     }
+}
+  
+
+@media screen and (min-width: 1200px) {
+  .bricklayer-column-sizer {
+    /* divide by 3. */
+    width: 33.3%;
   }
+}
+
+
+.bricklayer-column img {
+    width: 100%;
+}

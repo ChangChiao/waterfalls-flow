@@ -11,16 +11,33 @@ window.onload = function () {
     "10 - s6w2RpD.jpg",
     "9 - vb0uajo.jpg",
   ];
-  const bricklayer = new Bricklayer(document.querySelector(".bricklayer"));
-  for (let i = 0; i < imageList.length; i++) {
-    const random = Math.random().toString().slice(-6);
-    const img = document.createElement("img");
-    img.src = `./images/${imageList[i]}?${random}`;
-    img.onload = function () {
-      img.className = `animate__animated animate__bounceIn`;
-      img.style.animationDelay = `${0.3 * i}s`;
-    };
-    bricklayer.append(img);
+  const loadImage = () => {
+    let total = 0;
+    for (let i = 0; i < imageList.length; i++) {
+        let img = new Image();
+        img.src= `./images/${imageList[i]}`;
+        img.onload = function () {
+            total++
+            if(total === 10) appenBox();
+        }
+    }
   }
-  bricklayer.redraw()
+  const bricklayer = new Bricklayer(document.querySelector(".bricklayer"));
+  const appenBox = () => {
+      for (let i = 0; i < imageList.length; i++) {
+        const img = document.createElement("img");
+        img.src = `./images/${imageList[i]}`;
+        img.className = `animate__animated animate__bounceIn`;
+        img.style.animationDelay = `${0.3 * i}s`;
+        bricklayer.append(img);
+      }
+  }
+  loadImage();
 };
+
+
+window.addEventListener("beforeunload", function(event) {
+    console.log("bricklayer.destroyed");
+    // bricklayer.destroyed()
+    // document.querySelector(".bricklayer").innerHTML = ""
+});
